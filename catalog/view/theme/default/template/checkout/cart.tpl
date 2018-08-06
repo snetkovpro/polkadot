@@ -35,7 +35,7 @@
         &nbsp;(<?php echo $weight; ?>)
         <?php } ?>
       </h1>
-      <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
+      <form action="<?php echo $action; ?>" id="update" method="post" enctype="multipart/form-data">
         <div class="table-responsive">
           <table class="table table-bordered">
             <thead>
@@ -81,7 +81,7 @@
                 </td>
                  <td class="text-left">
                     <div class="input-group btn-block" style="max-width: 200px;">
-                        <input type="text" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" class="form-control" />
+                        <input type="text" onblur="updateCart();" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" class="form-control" />
                         <span class="input-group-btn">
                             <button type="submit" data-toggle="tooltip" title="<?php echo $button_update; ?>" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
                             <button type="button" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger" onclick="cart.remove('<?php echo $product['cart_id']; ?>');"><i class="fa fa-times-circle"></i></button>
@@ -97,7 +97,7 @@
                 <?php } else { ?>
                 <td class="text-left">
                     <div class="input-group btn-block" style="max-width: 200px;">
-                        <input type="text" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" class="form-control" />
+                        <input type="text" onblur="updateCart();" name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" size="1" class="form-control" />
                             <span class="input-group-btn">
                                 <button type="submit" data-toggle="tooltip" title="<?php echo $button_update; ?>" class="btn btn-primary"><i class="fa fa-refresh"></i></button>
                                 <button type="button" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger" onclick="cart.remove('<?php echo $product['cart_id']; ?>');"><i class="fa fa-times-circle"></i></button>
@@ -153,6 +153,10 @@
 </div>
 <?php echo $footer; ?>
 <script>
+  function updateCart() {
+  
+    $('#update').submit();
+  }
   $(document).ready(function(){
     $('.buttons .pull-right .btn-primary').on('click', function(){
       var a = {};
